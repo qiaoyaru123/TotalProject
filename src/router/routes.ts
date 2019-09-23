@@ -4,7 +4,7 @@ export default [
     {
         path: '/',
         name: 'home',
-        component: () => import('../views/Home.vue'),
+        component: () => import('../views/home/index.vue'),
     },
     {
         path: '/login',
