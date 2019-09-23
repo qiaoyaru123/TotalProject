@@ -5,30 +5,30 @@
     </div>
     <div class="input">
       <div>
-        <input type="text" v-model="username" />
+        <input type="text" v-model="mobile" />
       </div>
       <div>
         <input type="password" v-model="password" />
       </div>
       <div class="btn" @click="login">登录</div>
     </div>
-    <Dialogs :title="title"/>
+    <Dialogs v-show="isShow" :title="title" :isShow="noneView" />
   </div>
 </template>
 <script lang="ts">
 import { Login } from "../../server/index";
-import Dialogs from "../../components/dialogs/index.vue"
+import Dialogs from "../../components/dialogs/index.vue";
 export default {
   data() {
     return {
-      username: "",
-      password: "",
-      isShow:false,
-      title:""
+      mobile: "15818264086",
+      password: "123456",
+      isShow: false,
+      title: ""
     };
   },
-  components:{
-     Dialogs
+  components: {
+    Dialogs
   },
   mounted() {
     // let data = await Login({
@@ -38,14 +38,31 @@ export default {
   },
   methods: {
     async login() {
-      console.log(this.username,this.password)
-      if (!this.username) {
-         this.title="用户名不正确";
+      if (!this.mobile) {
+        this.showView();
+        this.title = "请输入用户名";
       } else if (!this.password) {
-        this.title="用户名密码不正确";
-      } 
-      let userInfo = await Login({});
-      console.log(userInfo)
+        this.showView();
+        this.title = "请输入密码";
+      }
+      let userInfo = <any>await Login({
+        mobile: this.mobile,
+        password: this.password
+      });
+      if (userInfo.errno === 0) {
+        console.log(userInfo)
+        this.$router.push("/home");
+        window.localStorage.setItem("key", userInfo.data.sessionKey);
+      } else {
+        this.showView();
+        this.title = "账户或密码不正确";
+      }
+    },
+    showView() {
+      this.isShow = true;
+    },
+    noneView() {
+      this.isShow = false;
     }
   }
 };

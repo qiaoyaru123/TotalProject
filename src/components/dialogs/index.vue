@@ -10,13 +10,15 @@ export default {
      title:{
           default:"",
           type:String,
+     },
+     isShow:{
+        type:Function,
      }
   },
-  data() {
-   
-  },
   mounted() {
-   
+    setTimeout(()=>{
+      this.isShow()
+    },1500)
   }
 };
 </script>

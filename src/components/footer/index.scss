@@ -1,0 +1,15 @@
+
+.footer{
+    display: flex;
+    height: 1rem;
+    border-top: 1px solid #ccc;
+    background: #ccc;
+    font-size: 12px
+}
+.footer dl{
+    display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     flex: 1;
+}
