@@ -1,12 +1,4 @@
-
-# 网易严选
-
-创建项目
-```
-   下载包   npm install -g @vue/cli
- 创建项目   vue create my-project
-```
-
+# app
 
 ## Project setup
 ```
@@ -35,6 +27,3 @@ yarn run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-
-
