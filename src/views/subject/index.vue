@@ -4,8 +4,6 @@
             <div class="red">
                 <img :src="item.scene_pic_url" alt="">
             </div>
-
-            
             <div class="bottom">
                 <h3>{{item.title}}</h3>
                 <p>{{item.subtitle}}</p>
@@ -16,33 +14,19 @@
     </div>
 </template>
 <script>
-import {mapMutations,mapState,mapActions} from 'vuex';
+import {list}  from "@/server/index"
 export default {
-    props:{
-
-    },
-    components:{
-
-    },
     data(){
         return {
-
+           project:[]
         }
     },
-    computed:{
-        ...mapState(['project'])
-    },
     methods:{
-        ...mapActions(['getPro']),
-        ...mapMutations(['getprodata'])
-        
-
+      
     },
-    created(){
-        this.getPro();
-    },
-    mounted(){
-
+   async mounted(){
+      let data= await list();
+      console.log(data)
     }
 }
 </script>

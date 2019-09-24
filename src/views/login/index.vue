@@ -21,7 +21,7 @@ import Dialogs from "../../components/dialogs/index.vue";
 export default {
   data() {
     return {
-      mobile: "15818264086",
+      mobile: "15323807318",
       password: "123456",
       isShow: false,
       title: ""
@@ -30,41 +30,35 @@ export default {
   components: {
     Dialogs
   },
-  mounted() {
-    // let data = await Login({
-    //   old: 123
-    // });
-    // console.log(data);
-  },
   methods: {
-    async login() {
+    async login(){
       if (!this.mobile) {
         this.showView();
         this.title = "请输入用户名";
       } else if (!this.password) {
         this.showView();
         this.title = "请输入密码";
-      }
+      };
       let userInfo = <any>await Login({
         mobile: this.mobile,
         password: this.password
       });
       if (userInfo.errno === 0) {
-        console.log(userInfo)
         this.$router.push("/home");
-        window.localStorage.setItem("key", userInfo.data.sessionKey);
+        window.localStorage.setItem("x-nideshop-token", userInfo.data.sessionKey);
+        window.localStorage.setItem("user", userInfo.data.mobile);
       } else {
         this.showView();
         this.title = "账户或密码不正确";
-      }
+      };
     },
     showView() {
       this.isShow = true;
     },
     noneView() {
       this.isShow = false;
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss">

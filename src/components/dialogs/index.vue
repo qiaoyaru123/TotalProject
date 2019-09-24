@@ -1,11 +1,10 @@
 <template>
   <div class="dialogs">
-        {{title}}
+        123
   </div>
 </template>
 <script lang="ts">
-import { Login } from "../../server/index";
-export default {
+ export default {
   props:{
      title:{
           default:"",

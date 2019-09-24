@@ -8,9 +8,11 @@ html{
     flex-direction: column;
     font-size: 14px;
     background: #F5F5F5;
+    
 }
 .m-user-info{
     flex: 1;
+    overflow: auto;
 }
 .header{
     height: 1.8rem;
@@ -19,7 +21,7 @@ html{
     padding: .7rem .4rem;
     display: flex;
 }
-.icon{
+.header .icon{
     width: 1.8rem;
     background: url("http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png") no-repeat;
     background-size: 100%;
@@ -38,11 +40,20 @@ html{
     align-items: center;
     color: white;
 }
+.main{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap
+}
 .m-user-item{
-    width: 33.333%;
+    width: 33%;
     height: 2.5rem;
     background: white;
     border: .5px solid gainsboro;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .user-btn{
     height: 1rem;
@@ -52,5 +63,23 @@ html{
     text-align: center;
     line-height: 1rem;
     outline: none;
-    border: none
+    border: none;
+    font-size: 15px;
+}
+.m-user-item span{
+  color: rgb(33, 150, 243); 
+  display: block
+}
+.m-user-item span:nth-child(1){
+  width:1rem;
+  height:1rem;
+}
+.m-user-item span:nth-child(1) img{
+    width: 100%;
+    height: 100%;
+}
+.m-user-item span:nth-child(2){
+ font-size: 15px;
+ letter-spacing: .05rem;
+ margin-top:.2rem;
 }

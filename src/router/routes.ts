@@ -19,4 +19,20 @@ export default [
         name: 'my',
         component: () => import('../views/my/index.vue'),
     },
+    {
+        path: '/myCollect',
+        name: 'myCollect',
+        component: () => import('../views/myCollect/index.vue'),
+    },
+    {
+        path: '/mySite',
+        name: 'mySite',
+        component: () => import('../views/Mysite/index.vue'),
+    },
+    {
+        path: '/addSite',
+        name: 'addSite',
+        component: () => import('../views/addSite/index.vue'),
+    },
+    
 ];

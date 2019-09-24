@@ -19,7 +19,6 @@
                 <dd>{{item.name}}</dd>
             </dl>   
         </div>
-<!-- brandList -->
         <div class="con">
             <h3>品牌制造商直供</h3>
             <div v-for="(item,index) in getall.brandList" :key="index" class="cons">
@@ -30,13 +29,9 @@
 
             </div>
         </div>
-
-        
     </div>
 </template>
 <script>
-import Swiper from 'swiper';
-import '../../../node_modules/swiper/css/swiper.min.css';
 import {gethome} from '../../server/index';
 export default {
     props:{
@@ -56,23 +51,12 @@ export default {
     methods:{
         
     },
-    created(){
-       
-        new Swiper('.swiper-container',{
-            loop:true,
-            pagination:{
-                el:'.swiper-pagination'
-            },
-            direction:"horizontal"
-        })   
-    },
-    async mounted(){
-        let data=await gethome({
-
-        })
+    created:{
+      async mounted () {
+        let data=await gethome({})
         console.log(data.data);
         this.getall= data.data
-        
+      }
     }
 }
 </script>

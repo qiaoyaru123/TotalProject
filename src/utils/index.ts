@@ -14,7 +14,8 @@ const instance = axios.create({
      baseURL: 'http://127.0.0.1:8888',
      timeout: 1000,
      headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        "x-nideshop-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNiwiaWF0IjoxNTY5MzI0MTgxfQ.St6edgXfDQhFI8xiTxykGFZfztclMzrtezDG4O3eZuI"
       }
 })
 

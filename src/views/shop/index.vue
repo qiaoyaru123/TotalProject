@@ -5,29 +5,7 @@
 </template>
 <script>
 export default {
-    props:{
-
-    },
-    components:{
-
-    },
-    data(){
-        return {
-
-        }
-    },
-    computed:{
-
-    },
-    methods:{
-
-    },
-    created(){
-
-    },
-    mounted(){
-
-    }
+ name:"shop"
 }
 </script>
 <style scoped lang="">

@@ -5,37 +5,10 @@
 </template>
 <script>
 export default {
-    props:{
-
-    },
-    components:{
-
-    },
-    data(){
-        return {
-
-        }
-    },
-    computed:{
-
-    },
-    methods:{
-
-    },
-    created(){
-
-    },
-    mounted(){
-
-    }
+name:"sort"
 }
 </script>
 <style lang="scss">
-.sort{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
+
 
 </style>

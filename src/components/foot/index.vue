@@ -1,6 +1,6 @@
 <template>
     <div class="foot">
-        <router-link to="/">首页</router-link>
+        <router-link to="/home">首页</router-link>
         <router-link to="/subject">专题</router-link>
         <router-link to="/sort">分类</router-link>
         <router-link to="/shop">购物车</router-link>
