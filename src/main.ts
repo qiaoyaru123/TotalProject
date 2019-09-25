@@ -1,11 +1,17 @@
 import Vue from 'vue';
 import App from './App.vue';
-import router from './router';
-import store from './store';
+import router from './router/index';
+import store from './store/index';
 import Foot from './components/foot/index.vue';
+import LyTab from 'ly-tab';
+
+
 
 Vue.config.productionTip = false;
-Vue.component('Foot',Foot)
+
+Vue.config.productionTip = false;
+Vue.component('Foot',Foot);
+Vue.use(LyTab)
 
 new Vue({
   router,
