@@ -6,12 +6,18 @@
     <div class="tab-container">
       <!-- 左侧点击列表 -->
       <div class="tab-list">
-        <div v-for="(item,index) in sortall.categoryList" :key="index" @click="handletal(index)">{{item.name}}</div> 
+        <div
+          v-for="(item,index) in sortall.categoryList"
+          :key="index"
+          @click="handletal(index)"
+        >{{item.name}}</div>
       </div>
       <!-- 商品列表 -->
-      <div class="tab-commodity" >
-        <div class="commodity-logo" >
-          <img :src="sortall.categoryList[ind].banner_url" />
+      <div class="tab-commodity">
+        <div class="commodity-logo">
+          <img 
+         
+          v-lazy="sortall.categoryList[ind].banner_url"/>
           <p>{{sortall.categoryList[ind].front_name}}</p>
         </div>
         <div class="categoryTitle">
@@ -19,54 +25,69 @@
           <div>{{sortall.categoryList[ind].name}}分类</div>
           <div>——</div>
         </div>
-        <div class="subCategory" >
-          <a href="#" v-for="(item,index) in sortall.categoryList[ind].subCategoryList" :key="index" @click="handletab({index,item})">
-            <img :src="item.wap_banner_url" />
+        <div class="subCategory">
+          <a
+            href="#"
+            v-for="(item,index) in dataTwo.subCategoryList"
+            :key="index"
+            @click="handletab({index,item})"
+          >
+            <img v-lazy="item.wap_banner_url"/>
             <div>{{item.name}}</div>
           </a>
         </div>
       </div>
     </div>
-    <Foot/>
+    <Foot />
   </div>
 </template>
 
 <script>
-import {sortall} from '../../server/index';
+import { sortall ,sortTwo} from "../../server/index";
 export default {
- 
   props: {},
   components: {},
   data() {
     return {
       sortall: [],
-      ind:0
-      
+      ind: 0,
+      id:'',
+      dataTwo:[]
     };
   },
   computed: {},
   methods: {
-    handletal(ind){
-      this.ind=ind;
+    handletal(ind) {
+      this.ind = ind;
+      this.id = this.sortall.categoryList[ind].id;
+      console.log(this.id);
+      this.getSort();
     },
-      handletab(obj){
-        console.log(obj);
-        
-        this.$router.push({
-             path:'/sortxiang',
-             query:obj
-        })
-      }
-  },
-  created() {
-    
-  },
-   async mounted(){
-       let data = await sortall({});
-       this.sortall = data.data;
-   }
-};
+    handletab(obj) {
+      this.$router.push({
+        path: "/sortxiang",
+        query: obj
+      });
+    },
 
+  async  getSort(){
+    //获取当前分类信息和子分类
+    let dataTwos = await sortTwo({
+      params:{id:this.id}
+    });
+    this.dataTwo = dataTwos.data.currentCategory;
+  }
+  },
+  created() {},
+  async mounted() {
+    let data = await sortall({});
+    this.sortall = data.data;
+    console.log(this.sortall.categoryList[3]);
+
+    //获取当前分类信息和子分类
+    this.dataTwo = this.sortall.categoryList[0];
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -173,15 +194,15 @@ export default {
       font-size: 14px;
     }
   }
-    .foot{
-       width: 100%;
-        height: 50px;
-        background: #fff;
-        line-height: 50px;
-        display: flex;
-        justify-content: space-around;
-        position: fixed;
-        bottom: 0;
-    }
+  .foot {
+    width: 100%;
+    height: 50px;
+    background: #fff;
+    line-height: 50px;
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+  }
 }
 </style>

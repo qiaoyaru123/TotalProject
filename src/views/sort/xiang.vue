@@ -1,12 +1,12 @@
 <template>
   <div class="xiang">
     <div class="head">
-        <span><</span>
+        <span @click="handleGo()"><</span>
         奇趣分类
     </div>
     <div class="qud">
       <div>
-        <ly-tab v-model="selectedId" :items="items" :options="options"></ly-tab>
+        <ly-tab v-model="selectedId" :items="items" :options="options" @change="handleChange()"></ly-tab>
       </div>
     </div>
     <div class="dem">
@@ -16,7 +16,7 @@
     <div class="quan" >
       <dl v-for="(item,index) in dataChild" :key="index" @click="goshop({item,index})">
         <dt>
-          <img :src="item.list_pic_url" alt />
+          <img alt v-lazy="item.list_pic_url"/>
         </dt>
         <dd>
           <p>{{item.name}}</p>
@@ -28,7 +28,7 @@
   </div>
 </template>
 <script>
-import { sortNav, sortChild } from "../../server/index";
+import { sortNav, sortChild} from "../../server/index";
 export default {
   props: {},
   components: {},
@@ -53,7 +53,13 @@ export default {
               path:'/sortshop',
               query:obj
           })
-      }
+      },
+      handleGo(){
+        this.$router.go(-1)
+      },
+     handleChange(){
+       console.log(this.selectedId)
+     }
   },
   created() {
     console.log(this.$route.query.index);
@@ -65,16 +71,18 @@ export default {
     this.ind = ind;
   },
   async mounted() {
+
+    //导航数据
     let dataNav = await sortNav({
       params: { id: this.id }
     });
     console.log(dataNav.data);
     this.data = dataNav.data;
     this.data.brotherCategory.map((item,index)=>{
-        this.items.push({label:item.name})
-        
+        this.items.push({label:item.name,index:index})  
     })
 
+    // 导航下的子元素
     let dataChild = await sortChild({
       params: { categoryId: this.id }
     });

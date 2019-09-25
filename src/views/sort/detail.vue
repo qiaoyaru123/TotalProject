@@ -1,48 +1,72 @@
 <template>
-    <div class="detail">
-        <ShopPage/>
-
-    </div>
+  <div class="detail">
+    <ShopPage :getData="xiangData" :getBom="getBom"/>
+    <AddShop/>
+  </div>
 </template>
 <script>
-import ShopPage from '../../components/shop/index';
+import ShopPage from "../../components/shop/index";
+import AddShop from '../../components/addshop/index';
+import { sortXiang,builds,getCount } from "../../server/index";
 export default {
-    props:{
+  props: {},
+  components: {
+    ShopPage,
+    AddShop
+  },
+  data() {
+    return {
+      id: "",
+      xiangData: [],
+      getBom:[]
+    };
+  },
+  computed: {},
+  methods: {},
+  created() {
+    console.log(this.$route.query.item.id);
+    this.id = this.$route.query.item.id;
+  },
+  async mounted() {
+    //获取详情页的数据
+    let getall = await sortXiang({
+      params: { id: this.id }
+    });
+    this.xiangData = getall.data;
+    console.log(this.xiangData);
 
-    },
-    components:{
-        ShopPage
-    },
-    data(){
-        return {
+    let getBuild = await builds({
+      params: { id: this.id }
+    });
+    
+    this.getBom = getBuild.data.goodsList;
+    console.log(this.getBom);
 
-        }
-    },
-    computed:{
-
-    },
-    methods:{
-
-    },
-    created(){
-
-    },
-    mounted(){
-
-    }
-}
+    let getCon = await getCount({
+        params:{id:this.id}
+    })
+    console.log(getCon.data.goodsCount)
+  }
+};
 </script>
 <style  lang="scss">
-html{
-    font-size: calc(100/750*100vm);
+*{
+   width: 100%;
+  height: 100%; 
 }
-.detail{
+html {
+  font-size: calc(100 / 750 * 100vm);
+}
+html,body{
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
-
-
-
+.detail {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 </style>

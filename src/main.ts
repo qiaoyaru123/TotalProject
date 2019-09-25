@@ -5,7 +5,10 @@ import store from './store/index';
 import Foot from './components/foot/index.vue';
 import LyTab from 'ly-tab';
 
-
+import VueLazyLoad from 'vue-lazyload'
+Vue.use(VueLazyLoad,{
+    loading:require('./assets/loading.jpg')
+})
 
 Vue.config.productionTip = false;
 

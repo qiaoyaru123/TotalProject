@@ -1,14 +1,15 @@
 <template>
   <div class="home">
     <div class="wrap">
-      <!-- <div class="swiper-container" >
+      <div class="swiper-container" >
                 <div class="swiper-wrapper">
-                    <div class="swiper-slider" v-for="(item,index) in getall.banner" :key="index">
+                    <div class="swiper-slide" v-for="(item,index) in getall.banner" :key="index">
                         <img src="item.image_url"/>
                     </div>
+                   
                 </div>
                  <div class="swiper-pagination"></div>
-      </div>-->
+      </div>
     </div>
 
     <div class="nav">
@@ -66,6 +67,12 @@ export default {
   computed: {},
   methods: {},
   created() {
+    
+  },
+  async mounted() {
+    let data = await gethome({});
+    console.log(data.data);
+    this.getall = data.data;
     new Swiper(".swiper-container", {
       loop: true,
       pagination: {
@@ -73,11 +80,6 @@ export default {
       },
       direction: "horizontal"
     });
-  },
-  async mounted() {
-    let data = await gethome({});
-    console.log(data.data);
-    this.getall = data.data;
   }
 };
 </script>
@@ -108,19 +110,20 @@ html{
     overflow-y: auto;
     max-width: 1200px;
     .wrap {
+      width: 100%;
       height: 22rem;
       border-bottom: 1px solid #ccc;
       .swiper-container {
         width: 100%;
         height: 100%;
-        .swiper-slider {
-          width: 100%;
-          height: 100%;
-          img {
-            width: 100%;
-            height: 100%;
-          }
-        }
+        // .swiper-slider {
+        //   width: 100%;
+        //   height: 100%;
+        //   img {
+        //     width: 100%;
+        //     height: 100%;
+        //   }
+        // }
       }
     }
     .nav {
