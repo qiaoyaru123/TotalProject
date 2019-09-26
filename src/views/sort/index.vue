@@ -1,7 +1,7 @@
 <template>
   <div class="classification">
     <div class="seachInput">
-      <input type="text" placeholder="搜索商品，共239款好物" />
+      <input type="text" placeholder="搜索商品，共239款好物" @click="handleSou()"/>
     </div>
     <div class="tab-container">
       <!-- 左侧点击列表 -->
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { sortall ,sortTwo} from "../../server/index";
+import { sortall ,sortTwo,buildSearch} from "../../server/index";
 export default {
   props: {},
   components: {},
@@ -52,7 +52,8 @@ export default {
       sortall: [],
       ind: 0,
       id:'',
-      dataTwo:[]
+      dataTwo:[],
+      searchdata:[]
     };
   },
   computed: {},
@@ -69,6 +70,12 @@ export default {
         query: obj
       });
     },
+    handleSou(){
+      this.$router.push({
+        path:'/sortsearch',
+        query:this.searchdata
+      })
+    },
 
   async  getSort(){
     //获取当前分类信息和子分类
@@ -83,6 +90,13 @@ export default {
     let data = await sortall({});
     this.sortall = data.data;
     console.log(this.sortall.categoryList[3]);
+
+    //获取商品查询的相关信息
+    let SouData= await buildSearch({
+
+    })
+    console.log(SouData.data);
+    this.searchdata= SouData.data;
 
     //获取当前分类信息和子分类
     this.dataTwo = this.sortall.categoryList[0];

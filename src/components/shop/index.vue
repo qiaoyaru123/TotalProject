@@ -8,7 +8,7 @@
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="(item,index) in getData.gallery" :key="index">
-            <img v-lazy="item.img_url"/>
+            <img v-lazy="item.img_url" />
           </div>
           <div class="swiper-pagination"></div>
         </div>
@@ -34,7 +34,7 @@
       <h2>${{getData.info.retail_price}}</h2>
       <span>WMF制造商</span>
     </div>
-    <div class="xiao">
+    <div class="xiao" @click="handleTan()">
       <span>X0</span>
       选择规格>
     </div>
@@ -47,52 +47,64 @@
         </li>
       </ul>
     </div>
-
     <!-- ------------- -->
-
-     <div class="remed">
-        
-        <dl v-for="(item,index) in getBom" :key="index">
-            <dt>
-                <img v-lazy="item.list_pic_url"/>
-            </dt>
-            <dd>
-                <p>{{item.name}}</p>
-                <p>{{item.retail_price}}</p>
-            </dd>
-        </dl>
+    <div class="remed">
+      <dl v-for="(item,index) in getBom" :key="index">
+        <dt>
+          <img v-lazy="item.list_pic_url" />
+        </dt>
+        <dd>
+          <p>{{item.name}}</p>
+          <p>{{item.retail_price}}</p>
+        </dd>
+      </dl>
     </div>
-
-    
-
     <div class="root">
-      <span>☆</span>
-      <span></span>
-      <button>加入购物车</button>
+      <div>☆</div>
+      <div @click="handleTo()">
+        <img src=".././../assets/shop.jpg" alt  class="img"/>
+      </div>
+      <button @click="handleOpen()">加入购物车</button>
       <button>立即购买</button>
     </div>
-   
   </div>
 </template>
 <script>
-
 import Swiper from "swiper";
 import "../../../node_modules/swiper/css/swiper.min.css";
-
+import { mapState, mapMutations } from "vuex";
+import {addShop} from '../../server/index';
 export default {
-  props: ["getData","getBom"],
+  props: ["getData", "getBom"],
   components: {},
   data() {
-    return {};
+    return {
+      open
+    };
   },
-  computed: {},
+  computed: {
+    ...mapState({
+      flag: state => state.getData.flag
+    })
+  },
   methods: {
-      handleGo(){
-          this.$router.go(-1)
-      }
+    ...mapMutations(["hanldeBen"]),
+    handleGo() {
+      this.$router.go(-1);
+    },
+    handleOpen() {
+      this.hanldeBen();
+      console.log(this.flag);
+    },
+    handleTan(){
+      this.hanldeBen();
+    },
+    handleTo(){
+      console.log(11111111111);
+      // this.$router.push('/shop')
+    }
   },
   created() {
-    console.log(this._props.getBom);
     new Swiper(".swiper-container", {
       loop: true,
       pagination: {
@@ -101,7 +113,20 @@ export default {
       direction: "horizontal"
     });
   },
-  mounted() {}
+  async mounted() {
+    console.log(this._props.getData.info.goods_number)
+    // console.log(this._props.getData.info.goods_number);
+    // console.log(this._props.getData.info.primary_product_id);
+    // console.log(this._props.getData.brand_id)
+    let getAdd = await addShop({
+      params:{
+        goodsId:this._props.getData.info.primary_product_id,
+        number:this._props.getData.info.goods_number,
+        productId:this._props.getData.info.sell_volume
+      }
+    })
+    console.log(getAdd)
+  }
 };
 </script>
 <style  lang="scss">
@@ -129,16 +154,14 @@ body {
     text-align: center;
     line-height: 3rem;
     background: rgb(240, 238, 238);
-    
     span {
-        &:nth-child(1){
-            margin-left: -10rem;
-        }
-        &:nth-child(2){
-            margin-left: 8rem;
-        }
+      &:nth-child(1) {
+        margin-left: -10rem;
+      }
+      &:nth-child(2) {
+        margin-left: 8rem;
+      }
     }
-   
   }
   .nav {
     width: 100%;
@@ -154,10 +177,10 @@ body {
           height: 100%;
         }
       }
-      .swiper-pagination{
-          width: 100%;
-          height: 3rem;
-          margin-top: 20rem;
+      .swiper-pagination {
+        width: 100%;
+        height: 3rem;
+        margin-top: 20rem;
       }
     }
   }
@@ -208,7 +231,6 @@ body {
   .xiao {
     height: 3rem;
     line-height: 3rem;
-
     margin-left: 17rem;
     span {
       color: red;
@@ -226,10 +248,9 @@ body {
     }
     .box {
       width: 100%;
-      
       li {
         width: 90%;
-        height:auto;
+        height: auto;
         background: #ccc;
         margin: 0 auto;
         display: flex;
@@ -238,71 +259,80 @@ body {
         span {
           &:nth-child(1) {
             //   width:4rem;
-              height:auto;
+            height: auto;
             color: rgb(70, 66, 66);
-            
           }
-          &:nth-child(2){
-              margin-left: 1rem;
-              font-size: 1rem;
+          &:nth-child(2) {
+            margin-left: 1rem;
+            font-size: 1rem;
           }
         }
-        
       }
     }
   }
 
-  .remed{
-      width: 100%;
-      height: auto;
-      display: flex;
-     
-      flex-wrap: wrap;
-      flex-shrink: 2;
-      justify-content: space-around;
-      background: purple;
-      dl{
-          width: 48%;
-          height: 10rem;
-          dt{
-              width: 100%;
-              height: 6rem;
-              img{
-                  width: 100%;
-                  height: 100%;
-              }
-          }
-          dd{
-              width:100%;
-              p{
-                  width: 100%;
-                  height: 2rem;
-                  text-align: center;
-              }
-          }
+  .remed {
+    width: 100%;
+    height: auto;
+    display: flex;
+
+    flex-wrap: wrap;
+    flex-shrink: 2;
+    justify-content: space-around;
+    background: purple;
+    dl {
+      width: 48%;
+      height: 10rem;
+      dt {
+        width: 100%;
+        height: 6rem;
+        img {
+          width: 100%;
+          height: 100%;
+        }
       }
+      dd {
+        width: 100%;
+        p {
+          width: 100%;
+          height: 2rem;
+          text-align: center;
+        }
+      }
+    }
   }
-  
   .root {
     width: 100%;
     height: 4rem;
-    background: paleturquoise;
     display: flex;
     justify-content: space-around;
     position: fixed;
     bottom: 0;
     font-size: 3rem;
-    button {
+    background: #fff;
+      div:nth-child(1) {
+        width: 4rem;
+        height: 4rem;
+        margin-left: 1rem;
+      }
+      div:nth-child(2) {
+        width: 4rem;
+        height: 4rem;
+        .img{
+          width: 4rem;
+          height: 4rem;
+        }
+      }
+     button {
       &:nth-child(1) {
-        width: 25rem;
+        width: 22rem;
         height: 3.8rem;
-        background: orange;
         color: #fff;
         line-height: 3.8rem;
         text-align: center;
       }
       &:nth-child(2) {
-        width: 25rem;
+        width: 22rem;
         height: 3.8rem;
         background: paleturquoise;
         color: #fff;

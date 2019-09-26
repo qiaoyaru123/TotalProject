@@ -14,7 +14,6 @@ export function sortTwo(params:any){
     return request.get('/catalog/current',params)
 }
 
-
 //根据分类Id或者制造商Id获取商品
 export function sortChild(params:any){
     return request.get('/goods/list',params)
@@ -34,6 +33,18 @@ export function builds(params:any){
 export function getCount(params:any){
     return request.get('/goods/count',params)
 }
+
+//获取商品查询的相关信息
+export function buildSearch(){
+    return request.get('/search/index')
+}
+
+//商品查询模糊查询关键字
+export function searchPage(params:any){
+    return request.get('/search/helper',params)
+}
+
+
 
 
 

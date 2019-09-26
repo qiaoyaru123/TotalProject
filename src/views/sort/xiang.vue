@@ -86,7 +86,7 @@ export default {
     let dataChild = await sortChild({
       params: { categoryId: this.id }
     });
-    //console.log(dataChild.data.data);
+    console.log(dataChild.data.data);
     this.dataChild = dataChild.data.data;
   }
 };
@@ -108,7 +108,7 @@ html {
     line-height: 3rem;
     span{
         position: absolute;
-        margin-left: -8rem;
+        margin-left: -16rem;
     }
   }
   .foot {

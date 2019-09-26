@@ -2,12 +2,20 @@
 import axios from "axios"
 export default {
     state: {
-        project:[]
+        project:[],
+        flag:false
     },
     mutations: {
         getprodata(state:any,data:any){
             state.project=data;
-          }
+          },
+        hanldeBen(state:any){
+          state.flag=true
+        },
+        handleBi(state:any){
+          console.log(111111111)
+          state.flag=false;
+        }
     },
     actions: {
         getPro(context:any){

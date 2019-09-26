@@ -45,5 +45,10 @@ export default [
         path:'/sortshop',
         name: 'sortshop',
         component: () => import('../views/sort/detail.vue'),
+    },
+    {
+        path:'/sortsearch',
+        name: 'sortsearch',
+        component: () => import('../views/sort/search.vue'),
     }
 ];

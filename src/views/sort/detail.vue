@@ -1,13 +1,14 @@
 <template>
   <div class="detail">
     <ShopPage :getData="xiangData" :getBom="getBom"/>
-    <AddShop/>
+    <AddShop :getData="xiangData" v-show="flag"/>
   </div>
 </template>
 <script>
 import ShopPage from "../../components/shop/index";
 import AddShop from '../../components/addshop/index';
 import { sortXiang,builds,getCount } from "../../server/index";
+import {mapState} from 'vuex';
 export default {
   props: {},
   components: {
@@ -18,14 +19,21 @@ export default {
     return {
       id: "",
       xiangData: [],
-      getBom:[]
+      getBom:[],
     };
   },
-  computed: {},
+  computed: {
+    ...mapState({
+      flag:state=>state.getData.flag
+    })
+  },
   methods: {},
   created() {
     console.log(this.$route.query.item.id);
     this.id = this.$route.query.item.id;
+    console.log(this.flag)
+
+
   },
   async mounted() {
     //获取详情页的数据
