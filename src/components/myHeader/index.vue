@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     goMy() {
-      this.$router.push("/my");
+      this.$router.go(-1);
     }
   }
 };

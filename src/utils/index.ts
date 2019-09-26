@@ -8,14 +8,17 @@ import { AxiosResponse } from 'axios/index';
 //      "jasonandjay.com":"//exam.jasonandjay.com",
 //      "127.0.0.1:3000":"//169.254.19.165:7001"
 //  }
+let getToken=()=>{
+   return window.localStorage.getItem("x-nideshop-token")
+}
 
 const instance = axios.create({
     // baseURL:Url[window.location.host],
      baseURL: 'http://127.0.0.1:8888',
      timeout: 1000,
      headers: {
-        'content-type': 'application/json',
-        "x-nideshop-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNiwiaWF0IjoxNTY5MzI0MTgxfQ.St6edgXfDQhFI8xiTxykGFZfztclMzrtezDG4O3eZuI"
+        'Content-Type': 'application/json',
+        'x-nideshop-token': getToken()
       }
 })
 

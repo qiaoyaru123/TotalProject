@@ -1,39 +1,41 @@
 <template>
   <footer class="footer">
     <dl>
+      <router-link to="/home">
         <dt></dt>
         <dd>首页</dd>
+      </router-link>
     </dl>
-     <dl>
-        <dt></dt>
-        <dd>专题</dd>
+    <dl>
+      <dt></dt>
+      <dd>专题</dd>
     </dl>
-     <dl>
-        <dt></dt>
-        <dd>分类</dd>
+    <dl>
+      <dt></dt>
+      <dd>分类</dd>
     </dl>
-     <dl>
-        <dt></dt>
-        <dd>购物车</dd>
+    <dl>
+      <dt></dt>
+      <dd>购物车</dd>
     </dl>
-     <dl>
+    <dl>
+      <router-link to="/my">
         <dt></dt>
         <dd>我的</dd>
+      </router-link>
     </dl>
   </footer>
 </template>
-
+ 
 <script>
-export default { 
-   data(){
-       return {
-
-       };
-   },
-
-}
+export default {
+  name: "footerView",
+  data() {
+    return {};
+  }
+};
 </script>
 
 <style>
-  @import url("./index.scss");
+@import url("./index.scss");
 </style>

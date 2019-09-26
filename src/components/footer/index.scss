@@ -14,5 +14,12 @@
      flex: 1;
 }
 .footer{
-    box-shadow:.1rem .2rem .5rem #000
+    box-shadow: 0 -3px 10px 0 rgba(0,0,0,.2);
+}
+.footer a {
+    text-decoration:none;
+    color: #000
+}
+.footer .router-link-exact-active {
+    color:blue
 }

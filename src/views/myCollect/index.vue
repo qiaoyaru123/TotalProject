@@ -3,8 +3,8 @@
     <MyHeader :title='title' :isShow="isShow"/>
     <main class="m-collect-main">
       <div class="m-collect-item" v-for="item in datas" :key="item.id">
-          <div class="item">
-                <img :src="item.list_pic_url" alt="" class="icon">
+          <div class="item" @click="detailPage(item.value_id)">
+                <img v-lazy="item.list_pic_url" alt="" class="icon">
              <div class="m-item-con">
                 <span>{{item.name}}</span>
                 <span>{{item.goods_brief}}</span>
@@ -46,6 +46,10 @@ export default {
   methods:{
     goMy(){
       this.$router.push("/my")
+    },
+    detailPage(id){
+      console.log(id)
+      this.$router.push({path:"/goodsDetail",query:{id}})
     }
   }
 };

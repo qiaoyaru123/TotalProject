@@ -34,5 +34,10 @@ export default [
         name: 'addSite',
         component: () => import('../views/addSite/index.vue'),
     },
+    {
+        path: '/goodsDetail',
+        name: 'goodsDetail',
+        component: () => import('../views/goodsDetail/index.vue'),
+    },
     
 ];
