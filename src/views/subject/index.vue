@@ -1,7 +1,7 @@
 <template>
     <div class="subject">
-        {{project}}
-        <div class="box" v-for="(item,index) in project" :key="index">
+        <!-- {{getData}} -->
+        <div class="box" v-for="(item,index) in getData" :key="index">
             <div class="red">
                 <img :src="item.scene_pic_url" alt="">
             </div>
@@ -16,6 +16,7 @@
 </template>
 <script>
 import {mapMutations,mapState,mapActions} from 'vuex';
+import {subject} from '../../server/index';
 export default {
     props:{
 
@@ -25,7 +26,7 @@ export default {
     },
     data(){
         return {
-
+            getData:[]
         }
     },
     computed:{
@@ -38,7 +39,12 @@ export default {
     created(){
         this.getPro();
     },
-    mounted(){
+    async mounted(){
+        let getAll = await subject({
+
+        })
+        console.log(getAll);
+        this.getData = getAll.data.data;
 
     }
 }
@@ -63,6 +69,7 @@ export default {
         .bottom{
             width:100%;
             height: 200px;
+            text-align: center;
             h3{
                 width: 100%;
                 height: 30px;
