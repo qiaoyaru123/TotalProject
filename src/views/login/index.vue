@@ -17,7 +17,7 @@
 </template>
 <script lang="ts">
 import { Login } from "../../server/index";
-import Dialogs from "../../components/dialogs/index.vue";
+import Dialogs from "@/components/dialogs/index.vue";
 export default {
   data() {
     return {

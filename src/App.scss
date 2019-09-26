@@ -12,3 +12,13 @@ html,
 html{
     font-size: calc (100/750*100vw)
 }
+.foot{    
+  height: 50px;
+  background: #fff;
+  line-height: 50px;
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+}
+

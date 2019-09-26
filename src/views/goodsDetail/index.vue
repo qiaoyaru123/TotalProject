@@ -4,9 +4,9 @@
       <Header :isShow="isShow" :title="info.name" />
       <Swipers :banner="banner" :imgName="imgName" />
       <div class="m-goods-title">
-        <span>30天无忧退货</span>
-        <span>48小时快速退款</span>
-        <span>满88元免邮票</span>
+        <span>★ 30天无忧退货</span>
+        <span>★ 48小时快速退款</span>
+        <span>★ 满88元免邮票</span>
       </div>
       <div class="m-goods-tab">
         <span>{{info.name}}</span>
