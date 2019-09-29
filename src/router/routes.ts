@@ -1,7 +1,4 @@
 
-
-
-
 export default [
     {
         path: '/',
@@ -23,6 +20,26 @@ export default [
         component: () => import('../views/my/index.vue'),
     },
     {
+        path: '/myCollect',
+        name: 'myCollect',
+        component: () => import('../views/myCollect/index.vue'),
+    },
+    {
+        path: '/mySite',
+        name: 'mySite',
+        component: () => import('../views/Mysite/index.vue'),
+    },
+    {
+        path: '/addSite',
+        name: 'addSite',
+        component: () => import('../views/addSite/index.vue'),
+    },
+    {
+        path: '/goodsDetail',
+        name: 'goodsDetail',
+        component: () => import('../views/goodsDetail/index.vue'),
+    },
+    {
         path: '/shop',
         name: 'shop',
         component: () => import('../views/shop/index.vue'),
@@ -38,7 +55,7 @@ export default [
         component: () => import('../views/subject/index.vue'),
     },
     {
-        path: '/sortxiang',
+        path: '/sortxiang/:id',
         name: 'sortxiang',
         component: () => import('../views/sort/xiang.vue'),
     },{

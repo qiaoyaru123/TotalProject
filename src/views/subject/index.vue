@@ -15,29 +15,20 @@
     </div>
 </template>
 <script>
+import {list}  from "@/server/index"
 import {mapMutations,mapState,mapActions} from 'vuex';
 import {subject} from '../../server/index';
 export default {
-    props:{
-
-    },
-    components:{
-
-    },
     data(){
         return {
             getData:[]
         }
     },
-    computed:{
-        ...mapState(['project'])
-    },
     methods:{
-        ...mapActions(['getPro']),
-        ...mapMutations(['getprodata'])
+      
     },
     created(){
-        this.getPro();
+        
     },
     async mounted(){
         let getAll = await subject({

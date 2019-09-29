@@ -12,7 +12,7 @@
       </div>
       <div class="btn" @click="login">登录</div>
     </div>
-    <Dialogs v-show="isShow" :title="title" :isShow="noneView" />
+    <Dialogs v-if="isShow" :Dtitle="title" :isShow="noneView" />
   </div>
 </template>
 <script lang="ts">
@@ -30,9 +30,8 @@ export default {
   components: {
     Dialogs
   },
- 
   methods: {
-    async login(){
+    async login() {
       if (!this.mobile) {
         this.showView();
         this.title = "请输入用户名";
@@ -44,11 +43,14 @@ export default {
         mobile: this.mobile,
         password: this.password
       });
-      console.log(userInfo)
+      console.log(userInfo);
       if (userInfo.errno === 0) {
-        console.log(userInfo)
         this.$router.push("/home");
-        window.localStorage.setItem("key", userInfo.data.sessionKey);
+        window.localStorage.setItem(
+          "x-nideshop-token",
+          userInfo.data.sessionKey
+        );
+        window.localStorage.setItem("user", userInfo.data.mobile);
       } else {
         this.showView();
         this.title = "账户或密码不正确";

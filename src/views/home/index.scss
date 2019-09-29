@@ -1,0 +1,151 @@
+html {
+  font-size: calc(100 / 750 * 100vw);
+}
+.home {
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+  background: #eee;
+  display: flex;
+  flex-direction: column;
+}
+.m-home-box {
+  width: 100%;
+  flex: 1;
+  overflow: scroll;
+}
+.m-home-slide {
+  width: 100%;
+  height: 1.3rem;
+  padding: 0.1rem 0;
+  background: white;
+  display: flex;
+}
+.m-home-slide dl {
+  flex: 1;
+  text-align: center;
+}
+.m-home-slide dl dt {
+  width: 0.6rem;
+  display: block;
+  padding: 0.2rem 0 0.1rem 0;
+  margin: auto;
+}
+.m-home-slide dl dt img {
+  width: 100%;
+  height: 100%;
+}
+.m-home-main-banner,
+.recommend {
+  margin-top: 0.2rem;
+  background: white;
+}
+.m-home-main-banner h4,
+.newGoodsBox h4,
+.recommend h4 {
+  height: 1rem;
+  background: white;
+  text-align: center;
+  font-size: 0.3rem;
+  line-height: 1rem;
+  letter-spacing: 0.02rem;
+  font-weight: bold;
+}
+.m-main-banner-img {
+  display: flex;
+  flex-wrap: wrap;
+}
+.m-main-banner-img span {
+  width: 50%;
+  min-height: 2.5rem;
+  background: transparent;
+  text-decoration: none;
+  outline: none;
+  display: block;
+  background-position-y: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.m-main-banner-img span i {
+  display: block;
+  padding: 0.1rem;
+  font-style: normal;
+}
+.m-main-banner-img span i:nth-child(1) {
+  font-size: 17px;
+}
+.m-main-banner-img span i:nth-child(2) {
+  font-size: 14px;
+  color: #a9a9a9;
+}
+.newGoodsItemBox,
+.recommendItemBox {
+  width: 100%;
+  background: white;
+  display: flex;
+  flex-wrap: wrap;
+}
+.newGoodsItem {
+  width: 50%;
+}
+.newGoodsItem img {
+  width: 100%;
+}
+.newGoodsItem dd span {
+  display: block;
+  text-align: center;
+  margin-bottom: 0.2rem;
+  font-size: 17px;
+}
+.recommendItemBox {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.recommendItem {
+  padding: 0 0.2rem;
+  display: flex;
+  font-size: 15px;
+  position: relative;
+}
+.recommendItem dt {
+  width: 3rem;
+  height: 3rem;
+  background-position-y: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.recommendItem dd span {
+  display: block;
+  line-height:.5rem;
+  display: flex;
+  align-items: center;
+}
+.recommendItem dd span:nth-child(1){
+  margin-top:21%
+}
+.recommendItem dd span:nth-child(2){
+  color: #ccc;
+  font-size: 14px;
+}
+.recommendItem dd span:nth-child(3){
+   color: darkred;
+}
+.recommendItem:after {
+  content: "";
+  width: 200%;
+  height: 1px;
+  background: darkgrey;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  -webkit-transform-origin: 0;
+  transform-origin: 0;
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+}

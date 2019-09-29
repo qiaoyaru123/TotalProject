@@ -8,13 +8,17 @@ import { AxiosResponse } from 'axios/index';
 //      "jasonandjay.com":"//exam.jasonandjay.com",
 //      "127.0.0.1:3000":"//169.254.19.165:7001"
 //  }
+let getToken=()=>{
+   return window.localStorage.getItem("x-nideshop-token")
+}
 
 const instance = axios.create({
     // baseURL:Url[window.location.host],
      baseURL: 'http://127.0.0.1:8888',
      timeout: 1000,
      headers: {
-        'content-type': 'application/json'
+        'Content-Type': 'application/json',
+        'x-nideshop-token': getToken()
       }
 })
 

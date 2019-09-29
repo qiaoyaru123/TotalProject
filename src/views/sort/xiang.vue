@@ -1,22 +1,22 @@
 <template>
   <div class="xiang">
     <div class="head">
-        <span @click="handleGo()"><</span>
-        奇趣分类
+      <span @click="handleGo()"><</span>
+      奇趣分类
     </div>
     <div class="qud">
       <div>
-        <ly-tab v-model="selectedId" :items="items" :options="options" @change="handleChange()"></ly-tab>
+        <ly-tab v-model="selectedId" :items="items" :options="options" @change="handleChange"></ly-tab>
       </div>
     </div>
-    <div class="dem">
+    <div class="dem" v-if="data.brotherCategory">
       <h5>{{data.brotherCategory[ind].name}}</h5>
       <p>{{data.brotherCategory[ind].front_name}}</p>
     </div>
-    <div class="quan" >
+    <div class="quan">
       <dl v-for="(item,index) in dataChild" :key="index" @click="goshop({item,index})">
         <dt>
-          <img alt v-lazy="item.list_pic_url"/>
+          <img alt v-lazy="item.list_pic_url" />
         </dt>
         <dd>
           <p>{{item.name}}</p>
@@ -43,7 +43,8 @@ export default {
         activeColor: '#1d98bd'
         // 可在这里指定labelKey为你数据里文字对应的字段
       },
-      ind:0
+      ind:0,
+      ids:''
     };
   },
   computed: {},
@@ -58,20 +59,29 @@ export default {
         this.$router.go(-1)
       },
      handleChange(){
-       console.log(this.selectedId)
+       this.ids = this.data.brotherCategory[this.selectedId].id;
+       this.handleGetChange();
+     },
+     async handleGetChange () {
+        // 导航下的子元素
+        let dataChild = await sortChild({
+           categoryId: this.ids 
+        });
+        console.log(dataChild.data.data);
+        this.dataChild = dataChild.data.data;
      }
   },
   created() {
-    console.log(this.$route.query.index);
-    let id = this.$route.query.item.id;
-    //console.log(id);
+    console.log(this.$route.params.id);
+    // console.log(this.$route.query.item)
+    let id = this.$route.params.id;
+    
     this.id = id;
-
-    let ind = this.$route.query.index;
-    this.ind = ind;
+    console.log(id);
+    // let ind = this.$route.query.index;
+    // this.ind = ind;
   },
   async mounted() {
-
     //导航数据
     let dataNav = await sortNav({
       params: { id: this.id }
@@ -80,14 +90,14 @@ export default {
     this.data = dataNav.data;
     this.data.brotherCategory.map((item,index)=>{
         this.items.push({label:item.name,index:index})  
-    })
-
-    // 导航下的子元素
+    }) 
+    
+    this.ids = this.data.brotherCategory[this.selectedId].id;
     let dataChild = await sortChild({
-      params: { categoryId: this.id }
-    });
-    console.log(dataChild.data.data);
-    this.dataChild = dataChild.data.data;
+          params: { categoryId: this.ids }
+        });
+        console.log(dataChild.data.data);
+        this.dataChild = dataChild.data.data;
   }
 };
 </script>
@@ -106,9 +116,9 @@ html {
     text-align: center;
     border-bottom: 1px solid #ccc;
     line-height: 3rem;
-    span{
-        position: absolute;
-        margin-left: -16rem;
+    span {
+      position: absolute;
+      margin-left: -16rem;
     }
   }
   .foot {
@@ -126,7 +136,7 @@ html {
     height: 3.5rem;
     display: flex;
     div {
-      width: auto;  
+      width: auto;
     }
   }
   .dem {
@@ -163,8 +173,8 @@ html {
           height: 100%;
         }
       }
-      dd{
-          text-align: center;
+      dd {
+        text-align: center;
       }
     }
   }

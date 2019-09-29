@@ -1,0 +1,25 @@
+
+.footer{
+    display: flex;
+    height: 1rem;
+    border-top: 1px solid #ccc;
+    background: #ccc;
+    font-size: 12px
+}
+.footer dl{
+    display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     flex: 1;
+}
+.footer{
+    box-shadow: 0 -3px 10px 0 rgba(0,0,0,.2);
+}
+.footer a {
+    text-decoration:none;
+    color: #000
+}
+.footer .router-link-exact-active {
+    color:blue
+}
