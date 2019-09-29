@@ -1,0 +1,67 @@
+html {
+	font-size: calc(100 / 750 * 100vw);
+}
+.collect {
+	width: 100%;
+	height: 100%;
+	font-size: 17px;
+	display: flex;
+	flex-direction: column;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.m-collect-item {
+	flex: 1;
+	width: 9.5rem;
+	overflow-y: auto;
+}
+
+.van-swipe-cell {
+	width: 9.5rem;
+}
+
+.van-swipe-cell__wrapper {
+	display: flex;
+	width: 9.5rem;
+}
+
+.items {
+	height: 2.5rem;
+	width: 7.5rem;
+	display: flex;
+	padding: .3rem 0 .3rem .3rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis
+}
+.items .icon {
+	height: 100%;
+  width: auto;
+}
+.van-swipe-cell__right {
+	width: 1.5rem;
+	line-height: 2.5rem;
+}
+.van-button{
+	height: 100%;
+}
+.m-item-con{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.m-item-con span {
+	height: 33.333%;
+	align-items: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
+}
+.m-item-con span:nth-child(2) {
+	color: darkgrey;
+}
+.m-item-con span:nth-child(3) {
+	color: red;
+}
