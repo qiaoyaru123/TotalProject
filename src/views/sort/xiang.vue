@@ -28,10 +28,9 @@
   </div>
 </template>
 <script>
-import { sortNav, sortChild} from "../../server/index";
+import {sortChild,sortNav} from '../../server/index';
 export default {
   props: {},
-  components: {},
   data() {
     return {
       id: "",
@@ -110,6 +109,7 @@ html {
   height: 100%;
   display: flex;
   flex-direction: column;
+  font-size: 15px;
   .head {
     width: 100%;
     height: 3rem;

@@ -2,7 +2,7 @@
 export default [
     {
         path: '/',
-        redirect: "/home"
+        redirect: "/login"
     },
     {
         path: '/home',
@@ -67,5 +67,10 @@ export default [
         path:'/sortsearch',
         name: 'sortsearch',
         component: () => import('../views/sort/search.vue'),
+    },
+    {
+        path:'/funny',
+        name: 'funny',
+        component: () => import('../views/funny/index.vue'),
     }
 ];

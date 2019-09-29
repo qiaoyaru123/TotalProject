@@ -54,7 +54,7 @@
     <div class="root">
       <div>☆</div>
       <div @click="handleTo()">
-        <img src=".././../assets/shop.jpg" alt  class="img"/>
+        <img src=".././../assets/shop.jpg" alt class="img" />
       </div>
       <button @click="handleOpen()">加入购物车</button>
       <button>立即购买</button>
@@ -64,7 +64,9 @@
 <script>
 
 import { mapState, mapMutations } from "vuex";
-import {addShop} from '../../server/index';
+import { addShop } from "../../server/index";
+//引入swiper组件
+
 export default {
   props: ["getData", "getBom"],
   components: {},
@@ -87,7 +89,7 @@ export default {
       this.hanldeBen();
       console.log(this.flag);
     },
-    handleTan(){
+    handleTan() {
       this.hanldeBen();
     },
     handleTo(){
@@ -97,22 +99,22 @@ export default {
   created() {
   },
   async mounted() {
-    console.log(this._props.getData.info.goods_number)
+    console.log(this._props.getData.info.goods_number);
     // console.log(this._props.getData.info.goods_number);
     // console.log(this._props.getData.info.primary_product_id);
     // console.log(this._props.getData.brand_id)
     let getAdd = await addShop({
-      params:{
-        goodsId:this._props.getData.info.primary_product_id,
-        number:this._props.getData.info.goods_number,
-        productId:this._props.getData.info.sell_volume
+      params: {
+        goodsId: this._props.getData.info.primary_product_id,
+        number: this._props.getData.info.goods_number,
+        productId: this._props.getData.info.sell_volume
       }
-    })
-    console.log(getAdd)
+    });
+    console.log(getAdd);
   }
 };
 </script>
-<style  lang="scss">
+<style lang="scss">
 * {
   width: 100%;
   height: 100%;
@@ -130,6 +132,7 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  font-size: 15px;
   .head {
     width: 100%;
     height: 3rem;
@@ -149,23 +152,7 @@ body {
   .nav {
     width: 100%;
     height: 23rem;
-    .swiper-container {
-      width: 100%;
-      height: 100%;
-      .swiper-slide {
-        width: 100%;
-        height: 100%;
-        img {
-          width: 100%;
-          height: 100%;
-        }
-      }
-      .swiper-pagination {
-        width: 100%;
-        height: 3rem;
-        margin-top: 20rem;
-      }
-    }
+
   }
   .dem {
     width: 100%;
@@ -292,18 +279,17 @@ body {
     bottom: 0;
     font-size: 3rem;
     background: #fff;
-      div:nth-child(1) {
+    div:nth-child(1) {
+      width: 4rem;
+      height: 4rem;
+      margin-left: 1rem;
+    }
+    div:nth-child(2) {
+      width: 4rem;
+      height: 4rem;
+      .img {
         width: 4rem;
         height: 4rem;
-        margin-left: 1rem;
-      }
-      div:nth-child(2) {
-        width: 4rem;
-        height: 4rem;
-        .img{
-          width: 4rem;
-          height: 4rem;
-        }
       }
      button {
        color: inherit;
@@ -328,5 +314,6 @@ body {
       }
     }
   }
+}
 }
 </style>

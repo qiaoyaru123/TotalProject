@@ -8,15 +8,15 @@
     </dl>
     <dl>
       <router-link to="/subject">
-      <dt></dt>
-      <dd>专题</dd>
+        <dt></dt>
+        <dd>专题</dd>
       </router-link>
     </dl>
     <dl>
       <router-link to="/sort">
       <dt></dt>
       <dd>分类</dd>
-       </router-link>
+      </router-link>
     </dl>
     <dl>
       <router-link to="/shop">

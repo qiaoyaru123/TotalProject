@@ -37,15 +37,18 @@
         </div>
       </div>
     </div>
-    <Foot />
+    <Footer />
   </div>
 </template>
 
 <script>
 import { sortall ,sortTwo,buildSearch} from "../../server/index";
+import Footer from "@/components/footer/index.vue";
 export default {
   props: {},
-  components: {},
+  components: {
+    Footer
+  },
   data() {
     return {
       sortall: [],

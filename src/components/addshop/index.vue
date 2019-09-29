@@ -95,6 +95,7 @@ export default {
             bottom: 4rem;
             display: flex;
             flex-direction: column;
+            font-size: 15px;
             .top{
                 width: 100%;
                 height: 7rem;

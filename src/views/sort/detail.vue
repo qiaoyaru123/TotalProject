@@ -76,5 +76,6 @@ html,body{
   height: 100%;
   display: flex;
   flex-direction: column;
+  font-size: 15px;
 }
 </style>

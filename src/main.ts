@@ -5,28 +5,20 @@ import store from './store/index';
 import Foot from './components/foot/index.vue';
 import VueLazyload from 'vue-lazyload';
 import LyTab from 'ly-tab';
+import { Area,SwipeCell,Button } from 'vant';
 import 'vant/lib/area/style';
-import { Area } from 'vant';
-
-
-Vue.use(Area);
+import "vant/lib/button/style";
+Vue.use(Area).use(SwipeCell).use(Button);
+Vue.use(LyTab);
 Vue.use(VueLazyload, {
   preLoad: 1,
-  error: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3290263709,2757473790&fm=26&gp=0.jpg',
-  loading: 'http://img4.imgtn.bdimg.com/it/u=43815600,1195518016&fm=15&gp=0.jpg',
+  error: 'http://img0.imgtn.bdimg.com/it/u=3790684772,3719055722&fm=26&gp=0.jpg',
+  loading: 'http://img2.imgtn.bdimg.com/it/u=1872370659,42226841&fm=26&gp=0.jpg',
   attempt: 1
 })
 
-Vue.use(LyTab)
-
-
-
+Vue.component('Foot',Foot)
 Vue.config.productionTip = false;
-Vue.component('Foot',Foot);
-
-
-
-
 
 new Vue({
   router,
