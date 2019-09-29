@@ -9,6 +9,7 @@ export let myCollect = (params:any) => {
 //获取收藏栏详情数据
  export let goodsDetail=(params:any)=>{
      return request.get("/goods/detail",params)
+<<<<<<< HEAD
  }
 //获取奇趣数据
  export let goodsList = (params:any)=>{
@@ -19,3 +20,6 @@ export let myCollect = (params:any) => {
  export let goodCategory = (params:any)=>{
     return request.get('/goods/category',{params})
 }
+=======
+ }
+>>>>>>> b066ad801f8843f0766c7c1d30d27ab0776bed65

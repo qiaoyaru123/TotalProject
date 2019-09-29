@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 import {subject,sortNav,goodCategory,goodsList} from "../../server/index"
 export default {
     namespaced: true,
@@ -42,5 +43,23 @@ export default {
         commit('setCate',{ data:result.data.brotherCategory,id:payload.id })
         // console.log(result,'result------------')
     }
+=======
+export default {
+    namespaced: true,
+    state: {
+      data:123,
+      flag:false
+    },
+    mutations: {
+      hanldeBen(state:any){
+        state.flag=!state.flag
+      },
+      handleBi(state:any){
+        state.flag=false
+      }
+    },
+    actions: {
+      
+>>>>>>> b066ad801f8843f0766c7c1d30d27ab0776bed65
     },
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="mark" >
         <div class="bot">
-            <div class="top">
+            <div class="top" v-if="getData">
                 <dl>
                     <dt>
                         <img alt="" v-lazy="getData.info.list_pic_url">
@@ -43,10 +43,12 @@ export default {
         }
     },
     computed:{
-        ...mapState(['flag'])
+        ...mapState({
+            flag :state => state.getData.flag
+        })
     },
     methods:{
-        ...mapMutations(['handleBi']),
+        ...mapMutations("getData",['handleBi']),
         handleOpen(){
             this.handleBi()
         }

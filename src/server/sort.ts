@@ -16,7 +16,7 @@ export function sortTwo(params:any){
 
 //根据分类Id或者制造商Id获取商品
 export function sortChild(params:any){
-    return request.get('/goods/list',params)
+    return request.get('/goods/list',{params})
 }
 
 //获取商品详情

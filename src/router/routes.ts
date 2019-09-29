@@ -55,7 +55,7 @@ export default [
         component: () => import('../views/subject/index.vue'),
     },
     {
-        path: '/sortxiang',
+        path: '/sortxiang/:id',
         name: 'sortxiang',
         component: () => import('../views/sort/xiang.vue'),
     },{

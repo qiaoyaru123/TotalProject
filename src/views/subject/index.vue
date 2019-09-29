@@ -17,6 +17,7 @@
   </div>
 </template>
 <script>
+<<<<<<< HEAD
 import Footer from "@/components/footer/index.vue";
 import { mapMutations, mapState, mapActions } from "vuex";
 import { subject } from "../../server/index";
@@ -42,6 +43,32 @@ export default {
     this.getData = getAll.data.data;
   }
 };
+=======
+import {list}  from "@/server/index"
+import {mapMutations,mapState,mapActions} from 'vuex';
+import {subject} from '../../server/index';
+export default {
+    data(){
+        return {
+            getData:[]
+        }
+    },
+    methods:{
+      
+    },
+    created(){
+        
+    },
+    async mounted(){
+        let getAll = await subject({
+
+        })
+        console.log(getAll);
+        this.getData = getAll.data.data;
+
+    }
+}
+>>>>>>> b066ad801f8843f0766c7c1d30d27ab0776bed65
 </script>
 <style  lang="scss">
 html,

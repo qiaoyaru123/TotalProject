@@ -5,14 +5,6 @@
       <span>简约执行</span>
     </div>
     <div class="nav">
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide" v-for="(item,index) in getData.gallery" :key="index">
-            <img v-lazy="item.img_url" />
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-      </div>
     </div>
     <ul class="dem">
       <li>
@@ -69,7 +61,8 @@
     </div>
   </div>
 </template>
-<script >
+<script>
+
 import { mapState, mapMutations } from "vuex";
 import { addShop } from "../../server/index";
 //引入swiper组件
@@ -88,7 +81,7 @@ export default {
     })
   },
   methods: {
-    ...mapMutations(["hanldeBen"]),
+    ...mapMutations("getData",["hanldeBen"]),
     handleGo() {
       this.$router.go(-1);
     },
@@ -99,13 +92,11 @@ export default {
     handleTan() {
       this.hanldeBen();
     },
-    handleTo() {
-      console.log(11111111111);
+    handleTo(){
       // this.$router.push('/shop')
     }
   },
   created() {
-
   },
   async mounted() {
     console.log(this._props.getData.info.goods_number);
@@ -264,7 +255,6 @@ body {
       }
     }
   }
-
   .remed {
     width: 100%;
     height: auto;
@@ -316,14 +306,17 @@ body {
         width: 4rem;
         height: 4rem;
       }
-    }
-    button {
+     button {
+       color: inherit;
+    font: inherit;
+    font-size: 1rem;
       &:nth-child(1) {
         width: 22rem;
         height: 3.8rem;
         color: #fff;
         line-height: 3.8rem;
         text-align: center;
+        
       }
       &:nth-child(2) {
         width: 22rem;
@@ -332,6 +325,7 @@ body {
         color: #fff;
         line-height: 3.8rem;
         text-align: center;
+       
       }
     }
   }
