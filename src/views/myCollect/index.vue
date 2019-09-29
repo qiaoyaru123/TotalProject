@@ -1,6 +1,6 @@
 <template>
   <div class="collect">
-    <MyHeader :title="title" :isShow="isShow" />
+    <MyHeader :title="title" :isShow="isShow"/>
     <div class="m-collect-item">
       <van-swipe-cell v-for="item in datas" :key="item.value_id">
         <div class="items" @click="detailPage(item.value_id)">
@@ -34,7 +34,7 @@ export default {
       //提示
       title: "easyLikeGoods",
       //显示箭头
-      isShow: true
+      isShow: true,
     };
   },
   provide() {

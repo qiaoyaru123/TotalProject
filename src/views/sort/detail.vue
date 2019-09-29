@@ -1,11 +1,10 @@
 <template>
   <div class="detail">
-    <ShopPage :getData="xiangData" :getBom="getBom"/>
+
     <AddShop :getData="xiangData" v-show="flag"/>
   </div>
 </template>
 <script>
-import ShopPage from "../../components/shop/index";
 import AddShop from '../../components/addshop/index';
 import { sortXiang,builds,getCount } from "../../server/index";
 import {mapState} from 'vuex';

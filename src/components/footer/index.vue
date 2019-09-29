@@ -13,12 +13,16 @@
       </router-link>
     </dl>
     <dl>
-      <dt></dt>
-      <dd>分类</dd>
+      <router-link to="/sort">
+        <dt></dt>
+        <dd>分类</dd>
+      </router-link>
     </dl>
     <dl>
-      <dt></dt>
-      <dd>购物车</dd>
+      <router-link to="/shop">
+        <dt></dt>
+        <dd>购物车</dd>
+      </router-link>
     </dl>
     <dl>
       <router-link to="/my">

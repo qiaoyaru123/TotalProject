@@ -1,19 +1,21 @@
 <template>
   <div class="funny">
-    <Header :title="title" :isShow="isShow" />
+    <Header :title="title" :isShow="isShow"/>
     <div class="qud">
       <swiper :options="swiperOption" ref="SwiperSlite" class="picSwiper">
-        <swiper-slide v-for="item in navData" :key="item.id">{{item.name}}</swiper-slide>
+        <swiper-slide v-for="item in navData" :key="item.id">
+          <span @click="getItemData(item.id)">{{item.name}}</span>
+        </swiper-slide>
       </swiper>
-    </div>
+  </div>
     <div class="m-funny-main">
       <div class="m-funny-title">
         <div>{{currentCategory.front_desc}}</div>
         <div>{{currentCategory.front_name}}</div>
       </div>
-      <div class="m-funny-item" v-for="item in goodsLists" :key="item.id">
+      <div class="m-funny-item" v-for="item in goodsLists" :key="item.id" @click="goodsDetail(item.id)">
         <span>
-          <img :src="item.list_pic_url" alt />
+          <img v-lazy="item.list_pic_url" alt />
         </span>
         <span>{{item.name}}</span>
         <span>￥{{item.retail_price}}</span>
@@ -25,6 +27,7 @@
 import { sortNav, sortChild } from "@/server/index";
 // 引入组件
 import Header from "@/components/myHeader/index.vue";
+import BScroll from "@/component/betterScroll/index.vue"
 //swiper
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 import "swiper/dist/css/swiper.css";
@@ -40,7 +43,8 @@ export default {
   data() {
     return {
       swiperOption: {
-        slidesPerView: 5
+        slidesPerView: 5,
+        initialSlide:2,
       },
       title: "奇趣分类",
       isShow: true,
@@ -75,33 +79,26 @@ export default {
         query: obj
       });
     },
-    handleChange() {
-      this.ids = this.data.brotherCategory[this.selectedId].id;
-      this.handleGetChange();
-    },
-    async handleGetChange() {
-      // 导航下的子元素
-      let dataChild = await sortChild({
-        params: { categoryId: this.ids }
-      });
-      console.log(dataChild.data.data);
-      this.dataChild = dataChild.data.data;
-    }
-  },
-  async mounted() {
-    console.log(this.$route.query.id);
-    let id = this.$route.query.id;
-    await this.getNavData({
-      params: {
+   async getItemData(id){
+       await this.getNavData({
+       params: {
         id
-      }
+       }
     });
-    console.log(this.brotherCategory, this.goodsLists);
-    await this.getGoodsList({
+      await this.getGoodsList({
       page: 1,
       size: 1000,
       categoryId: this.currentCategory.id
     });
+    this.ind=this.currentCategory.is_show*1
+    },
+    goodsDetail(id){
+       this.$router.push({path:"/goodsDetail",query:{id}})
+    }
+  },
+  async mounted() {
+    let id = this.$route.query.id;
+    this.getItemData(id);
   }
 };
 </script>
@@ -115,22 +112,11 @@ html {
   display: flex;
   flex-direction: column;
   font-size: 15px;
-  // .head {
-  //   width: 100%;
-  //   height: 0.5rem;
-  //   text-align: center;
-  //   border-bottom: 1px solid #ccc;
-  //   line-height: 3rem;
-  //   span {
-  //     position: absolute;
-  //     margin-left: -16rem;
-  //   }
-  // }
   .qud {
     width: 100%;
     height: 0.8rem;
     .swiper-container {
-      height: .8rem;
+      height: 0.8rem;
       width: 100%;
     }
     .swiper-wrapper {
@@ -138,6 +124,9 @@ html {
       text-align: center;
       line-height: 0.8rem;
     }
+     .swiper-wrapper span{
+      margin-top:.2rem
+     }
   }
   .m-funny-main {
     width: 100%;
@@ -148,7 +137,7 @@ html {
     width: 100%;
     background: #ccc;
     text-align: center;
-    padding-top: 0.3rem;
+    padding: 0.3rem 0;
     line-height: 0.5rem;
     font-size: 14px;
     div:nth-child(2) {

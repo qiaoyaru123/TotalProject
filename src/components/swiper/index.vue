@@ -26,6 +26,7 @@ export default {
       default: 1
     }
   },
+  
   components: {
     swiper,
     swiperSlide
@@ -43,11 +44,8 @@ export default {
   data() {
     return {
       swiperOption: {
-        slidesPerView: this.PerView,
-        centeredSlides: true,
-        spaceBetween: 10,
-        grabCursor: true,
         loop: true,
+        click:true,
         pagination: ".swiper-pagination",
         autoplay: {
           delay: 3000,

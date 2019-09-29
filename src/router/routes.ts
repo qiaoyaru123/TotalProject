@@ -2,7 +2,7 @@
 export default [
     {
         path: '/',
-        redirect: "/login"
+        redirect: "/login",
     },
     {
         path: '/home',
@@ -38,11 +38,6 @@ export default [
         path: '/goodsDetail',
         name: 'goodsDetail',
         component: () => import('../views/goodsDetail/index.vue'),
-    },
-    {
-        path: '/shop',
-        name: 'shop',
-        component: () => import('../views/shop/index.vue'),
     },
     {
         path: '/sort',

@@ -16,7 +16,7 @@ export default {
     setTimeout(() => {
       this.isShow();
     }, 2000);
-  }
+  } 
 };
 </script>
 <style lang="scss">

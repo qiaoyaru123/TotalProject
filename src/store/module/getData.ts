@@ -1,6 +1,5 @@
 
-<<<<<<< HEAD
-import {subject,sortNav,goodCategory,goodsList} from "../../server/index"
+import {subject,sortNav,goodCategory,goodsList, goodsRelated} from "../../server/index"
 export default {
     namespaced: true,
     state: {
@@ -8,7 +7,8 @@ export default {
        navData:[],
        brotherCategory:[],
        currentCategory:{},
-       goodsLists:[]
+       goodsLists:[],
+       goodsRelateds:[]
     },
     mutations: {
       setSubjectData(){
@@ -23,6 +23,9 @@ export default {
       setGoodsList(state:any,payload:any){
         state.goodsLists=payload.data.data;
       },
+      setGoodsRelated(state:any,payload:any){
+        state.goodsRelateds=payload.data.goodsList
+      }
     },
     actions: {
      async getSubjectData({commit}:any){
@@ -37,29 +40,15 @@ export default {
        let result=await goodsList(params);
        commit('setGoodsList',result)
     },
+    async getGoodsRelated({commit}:any,params:any){
+      let result=await goodsRelated(params);
+      commit('setGoodsRelated',result)
+   },
       async getGoodCategory({commit}:any,payload:any){
         // console.log(id,'------id')
         let result = await goodCategory(payload)
         commit('setCate',{ data:result.data.brotherCategory,id:payload.id })
         // console.log(result,'result------------')
     }
-=======
-export default {
-    namespaced: true,
-    state: {
-      data:123,
-      flag:false
-    },
-    mutations: {
-      hanldeBen(state:any){
-        state.flag=!state.flag
-      },
-      handleBi(state:any){
-        state.flag=false
-      }
-    },
-    actions: {
-      
->>>>>>> b066ad801f8843f0766c7c1d30d27ab0776bed65
     },
 }

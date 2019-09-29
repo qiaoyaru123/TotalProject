@@ -18,11 +18,19 @@ export default {
     isShow: {
       default: false,
       type: Boolean
+    },
+    go:{
+      default:-1,
     }
   },
   methods: {
     goMy() {
-      this.$router.go(-1);
+      console.log()
+      if(typeof(this.go)==="string"){
+         this.$router.push(this.go);
+      }else{
+       this.$router.go(this.go);
+      }
     }
   }
 };

@@ -1,58 +1,63 @@
 <template>
   <div class="classification">
-    <div class="seachInput">
-      <input type="text" placeholder="搜索商品，共239款好物" @click="handleSou()"/>
-    </div>
-    <div class="tab-container">
-      <!-- 左侧点击列表 -->
-      <div class="tab-list">
-        <div
-          v-for="(item,index) in sortall.categoryList"
-          :key="index"
-          @click="handletal(index)"
-        >{{item.name}}</div>
+    <div class="classification-box">
+      <div class="seachInput">
+        <input type="text" placeholder="搜索商品，共239款好物" @click="handleSou()" />
       </div>
-      <!-- 商品列表 -->
-      <div class="tab-commodity" v-if="sortall.categoryList">
-        <div class="commodity-logo">
-          <img 
-          v-lazy="sortall.categoryList[ind].banner_url"/>
-          <p>{{sortall.categoryList[ind].front_name}}</p>
-        </div>
-        <div class="categoryTitle">
-          <div>——</div>
-          <div>{{sortall.categoryList[ind].name}}分类</div>
-          <div>——</div>
-        </div>
-        <div class="subCategory">
-          <a
-            href="#"
-            v-for="(item,index) in dataTwo.subCategoryList"
+      <div class="tab-container">
+        <!-- 左侧点击列表 -->
+        <div class="tab-list">
+          <div
+            v-for="(item,index) in sortall.categoryList"
             :key="index"
-            @click="handletab({index,item})"
-          >
-            <img v-lazy="item.wap_banner_url"/>
-            <div>{{item.name}}</div>
-          </a>
+            @click="handletal(index)"
+          >{{item.name}}</div>
+        </div>
+        <!-- 商品列表 -->
+        <div class="tab-commodity" v-if="sortall.categoryList">
+          <div class="commodity-logo">
+            <img v-lazy="sortall.categoryList[ind].banner_url" />
+            <p>{{sortall.categoryList[ind].front_name}}</p>
+          </div>
+          <div class="categoryTitle">
+            <div>——</div>
+            <div>{{sortall.categoryList[ind].name}}分类</div>
+            <div>——</div>
+          </div>
+          <div class="subCategory">
+            <a
+              href="#"
+              v-for="(item,index) in dataTwo.subCategoryList"
+              :key="index"
+              @click="handletab({index,item})"
+            >
+              <img v-lazy="item.wap_banner_url" />
+              <div>{{item.name}}</div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-    <Foot />
+
+    <Footer />
   </div>
 </template>
 
 <script>
-import { sortall ,sortTwo,buildSearch} from "../../server/index";
+import { sortall, sortTwo, buildSearch } from "../../server/index";
+//引入组件
+import Footer from "@/components/footer/index.vue";
 export default {
-  props: {},
-  components: {},
+  components: {
+    Footer
+  },
   data() {
     return {
       sortall: [],
       ind: 0,
-      id:'',
-      dataTwo:[],
-      searchdata:[]
+      id: "",
+      dataTwo: [],
+      searchdata: []
     };
   },
   computed: {},
@@ -64,25 +69,25 @@ export default {
       this.getSort();
     },
     handletab(obj) {
-      console.log(obj)
+      console.log(obj);
       this.$router.push({
-        path: `/sortxiang/${obj.item.id}`,
-        query: obj.item.id
+        path:"/funny",
+        query:{id:obj.item.id}
       });
     },
-    handleSou(){
+    handleSou() {
       this.$router.push({
-        path:'/sortsearch',
-        query:this.searchdata
-      })
+        path: "/sortsearch",
+        query: this.searchdata
+      });
     },
-  async  getSort(){
-    //获取当前分类信息和子分类
-    let dataTwos = await sortTwo({
-      params:{id:this.id}
-    });
-    this.dataTwo = dataTwos.data.currentCategory;
-  }
+    async getSort() {
+      //获取当前分类信息和子分类
+      let dataTwos = await sortTwo({
+        params: { id: this.id }
+      });
+      this.dataTwo = dataTwos.data.currentCategory;
+    }
   },
   created() {},
   async mounted() {
@@ -90,10 +95,9 @@ export default {
     this.sortall = data.data;
     console.log(this.sortall.categoryList[3]);
     //获取商品查询的相关信息
-    let SouData= await buildSearch({
-    })
+    let SouData = await buildSearch({});
     console.log(SouData.data);
-    this.searchdata= SouData.data;
+    this.searchdata = SouData.data;
     //获取当前分类信息和子分类
     this.dataTwo = this.sortall.categoryList[0];
   }
@@ -103,16 +107,19 @@ export default {
 .classification {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  .classification-box {
+    flex: 1;
+    overflow: auto
+  }
   .tab-container {
     width: 100%;
-    height: 100%;
     display: flex;
     background: #fff;
-    height: 100%;
     border-top: 2px solid #eee;
     .tab-commodity {
-      width: 73%;
+      width: 74%;
       overflow: scroll;
       .subCategory {
         width: 100%;
@@ -187,7 +194,7 @@ export default {
   }
   .seachInput {
     width: 100%;
-    height: 40px;
+    height: 0.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -202,16 +209,6 @@ export default {
       border-radius: 5px;
       font-size: 14px;
     }
-  }
-  .foot {
-    width: 100%;
-    height: 50px;
-    background: #fff;
-    line-height: 50px;
-    display: flex;
-    justify-content: space-around;
-    position: fixed;
-    bottom: 0;
   }
 }
 </style>

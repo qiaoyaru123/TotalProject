@@ -1,6 +1,6 @@
 <template>
   <div class="site">
-    <MyHeader :title="title" :isShow="isShow" />
+    <MyHeader :title="title" :isShow="isShow" :go="go"/>
     <div class="m-site-img"></div>
     <main class="m-site-main">
       <dl v-for="(item,index) in data" :key="index" @click="goAddSite(item)">
@@ -46,9 +46,12 @@ export default {
       title: "地址管理",
       //显示箭头
       isShow: true,
+       //跳的路由地址
+      go:"/my",
       data: [],
       isWrap: false,
-      id:""
+      id:"",
+      
     };
   },
   provide(){
