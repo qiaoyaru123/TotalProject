@@ -13,7 +13,7 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => {
+    setTimeout(() =>{
       this.isShow();
     }, 2000);
   }

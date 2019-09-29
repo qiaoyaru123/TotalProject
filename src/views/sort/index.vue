@@ -13,10 +13,9 @@
         >{{item.name}}</div>
       </div>
       <!-- 商品列表 -->
-      <div class="tab-commodity">
+      <div class="tab-commodity" v-if="sortall.categoryList">
         <div class="commodity-logo">
           <img 
-         
           v-lazy="sortall.categoryList[ind].banner_url"/>
           <p>{{sortall.categoryList[ind].front_name}}</p>
         </div>
@@ -65,9 +64,10 @@ export default {
       this.getSort();
     },
     handletab(obj) {
+      console.log(obj)
       this.$router.push({
-        path: "/sortxiang",
-        query: obj
+        path: `/sortxiang/${obj.item.id}`,
+        query: obj.item.id
       });
     },
     handleSou(){
@@ -76,7 +76,6 @@ export default {
         query:this.searchdata
       })
     },
-
   async  getSort(){
     //获取当前分类信息和子分类
     let dataTwos = await sortTwo({
@@ -90,20 +89,16 @@ export default {
     let data = await sortall({});
     this.sortall = data.data;
     console.log(this.sortall.categoryList[3]);
-
     //获取商品查询的相关信息
     let SouData= await buildSearch({
-
     })
     console.log(SouData.data);
     this.searchdata= SouData.data;
-
     //获取当前分类信息和子分类
     this.dataTwo = this.sortall.categoryList[0];
   }
 };
 </script>
-
 <style lang="scss" scoped>
 .classification {
   width: 100%;

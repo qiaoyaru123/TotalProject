@@ -7,8 +7,10 @@
       </router-link>
     </dl>
     <dl>
-      <dt></dt>
-      <dd>专题</dd>
+      <router-link to="/subject">
+        <dt></dt>
+        <dd>专题</dd>
+      </router-link>
     </dl>
     <dl>
       <dt></dt>

@@ -1,18 +1,8 @@
 
-<<<<<<< HEAD
 export default [
     {
         path: '/',
         redirect: "/login"
-=======
-
-
-
-export default [
-    {
-        path: '/',
-        redirect: "/home"
->>>>>>> 579af8b36466682b7a761a1904a41bb0db189406
     },
     {
         path: '/home',
@@ -30,7 +20,6 @@ export default [
         component: () => import('../views/my/index.vue'),
     },
     {
-<<<<<<< HEAD
         path: '/myCollect',
         name: 'myCollect',
         component: () => import('../views/myCollect/index.vue'),
@@ -50,8 +39,7 @@ export default [
         name: 'goodsDetail',
         component: () => import('../views/goodsDetail/index.vue'),
     },
-    
-=======
+    {
         path: '/shop',
         name: 'shop',
         component: () => import('../views/shop/index.vue'),
@@ -79,6 +67,10 @@ export default [
         path:'/sortsearch',
         name: 'sortsearch',
         component: () => import('../views/sort/search.vue'),
+    },
+    {
+        path:'/funny',
+        name: 'funny',
+        component: () => import('../views/funny/index.vue'),
     }
->>>>>>> 579af8b36466682b7a761a1904a41bb0db189406
 ];

@@ -14,21 +14,39 @@ import { swiper, swiperSlide } from "vue-awesome-swiper";
 import "swiper/dist/css/swiper.css";
 export default {
   name: "swipers",
-   props: {
-     banner:{
-       type:Array
-     },
-     imgName:{
-       type:String
-     }
+  props: {
+    banner: {
+      type: Array
+    },
+    imgName: {
+      type: String
+    },
+    PerView: {
+      type: Number,
+      default: 1
+    }
   },
-  components:{
+  components: {
     swiper,
-    swiperSlide,
+    swiperSlide
+  },
+  computed: {
+    swiper() {
+      return this.$refs.mySwiper.swiper;
+    }
+  },
+  updated() {
+    if (this.banner.length > 1) {
+      this.swiper.init();
+    }
   },
   data() {
     return {
       swiperOption: {
+        slidesPerView: this.PerView,
+        centeredSlides: true,
+        spaceBetween: 10,
+        grabCursor: true,
         loop: true,
         pagination: ".swiper-pagination",
         autoplay: {

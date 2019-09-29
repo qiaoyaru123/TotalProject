@@ -17,18 +17,23 @@
         </div>
       </main>
       <button class="user-btn" @click="upLogin">退出登录</button>
+      <Dialogs v-if="isShow" :Dtitle="title" :isShow="noneView"/>
     </div>
     <Footer />
   </div>
 </template>
 
 <script>
+//引入组件
 import Footer from "@/components/footer/index.vue";
+import Dialogs from "@/components/dialogs/index.vue"
 import { user } from "@/server/index";
 export default {
   data() {
     return {
       user: "",
+      title:"功能未完善",
+      isShow:false,
       data: [
         {
           icon:
@@ -106,7 +111,8 @@ export default {
     };
   },
   components: {
-    Footer
+    Footer,
+    Dialogs
   },
   async mounted() {
     let user = window.localStorage.getItem("user");
@@ -124,7 +130,14 @@ export default {
       } else if ($index === 1) {
         this.$router.push("/mySite");
       } else {
+        this.showView()
       }
+    },
+     showView() {
+      this.isShow = true;
+    },
+    noneView() {
+      this.isShow = false;
     }
   }
 };

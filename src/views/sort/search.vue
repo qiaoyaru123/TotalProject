@@ -1,7 +1,7 @@
 <template>
     <div class="search">
         <div class="head">
-            <p><</p>
+            <p @click="handleGo()"><</p>
             <div>
                 <input value="" :placeholder="defaultKeyword.keyword" name="" v-model="val" @keyup="handleChange"/>
             </div>
@@ -51,11 +51,12 @@ export default {
     methods:{
         handleChange(e){
             if(e.keyCode == 13){
-                console.log(this.val)
-                
+                console.log(this.val) 
             }
+        },
+        handleGo(){
+            this.$router.go(-1)
         }
-
     },
     created(){
         console.log(this.$route.query)
@@ -63,16 +64,12 @@ export default {
         // console.log(this.defaultKeyword.keyword)
         this.historyKeywordList = this.$route.query.historyKeywordList;
         this.hotKeywordList = this.$route.query.hotKeywordList
-
-
-
     },
    async  mounted(){
        let getPage = await searchPage({
            params:{keyword:this.val}
        })
        console.log(getPage.data)
-
     }
 }
 </script>

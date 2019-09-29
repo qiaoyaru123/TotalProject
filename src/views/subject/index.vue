@@ -1,108 +1,105 @@
 <template>
-    <div class="subject">
-        <!-- {{getData}} -->
-        <div class="box" v-for="(item,index) in getData" :key="index">
-            <div class="red">
-                <img :src="item.scene_pic_url" alt="">
-            </div>
-            <div class="bottom">
-                <h3>{{item.title}}</h3>
-                <p>{{item.subtitle}}</p>
-                <p>{{item.price_info}}元起</p>
-            </div>
+  <div class="subject">
+    <div class="subject-box">
+      <div class="box" v-for="(item,index) in getData" :key="index">
+        <div class="red" :style="{backgroundImage:`url(${item.scene_pic_url})`}">
+          <!-- <img :src="item.scene_pic_url" alt /> -->
         </div>
-        <Foot/>
+        <div class="bottom">
+          <h3>{{item.title}}</h3>
+          <p>{{item.subtitle}}</p>
+          <p>{{item.price_info}}元起</p>
+        </div>
+      </div>
     </div>
+
+    <Footer />
+  </div>
 </template>
 <script>
-<<<<<<< HEAD
-import {list}  from "@/server/index"
-=======
-import {mapMutations,mapState,mapActions} from 'vuex';
-import {subject} from '../../server/index';
->>>>>>> 579af8b36466682b7a761a1904a41bb0db189406
+import Footer from "@/components/footer/index.vue";
+import { mapMutations, mapState, mapActions } from "vuex";
+import { subject } from "../../server/index";
 export default {
-    data(){
-        return {
-<<<<<<< HEAD
-           project:[]
-=======
-            getData:[]
->>>>>>> 579af8b36466682b7a761a1904a41bb0db189406
-        }
-    },
-    methods:{
-<<<<<<< HEAD
-      
-    },
-   async mounted(){
-      let data= await list();
-      console.log(data)
-=======
-        ...mapActions(['getPro']),
-        ...mapMutations(['getprodata'])
-    },
-    created(){
-        this.getPro();
-    },
-    async mounted(){
-        let getAll = await subject({
-
-        })
-        console.log(getAll);
-        this.getData = getAll.data.data;
-
->>>>>>> 579af8b36466682b7a761a1904a41bb0db189406
-    }
-}
+  data() {
+    return {
+      getData: []
+    };
+  },
+  components: {
+    Footer
+  },
+  methods: {
+    ...mapActions(["subject"]),
+    ...mapMutations(["getprodata"])
+  },
+  created() {
+    this.getPro();
+  },
+  async mounted() {
+    let getAll = await subject({});
+    console.log(getAll);
+    this.getData = getAll.data.data;
+  }
+};
 </script>
 <style  lang="scss">
-.subject{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    .box{
-        width: 100%;
-        height: 450px;
-        .red{
-            width: 100%;
-            height: 213px; 
-            img{
-                width: 100%;
-                height: 100%;
-            }
-        }
-        .bottom{
-            width:100%;
-            height: 200px;
-            text-align: center;
-            h3{
-                width: 100%;
-                height: 30px;
-                
-            }
-            p{
-                width: 100%;
-                height: 50px;
-            }
-            p:nth-child(3){
-                width: 100%;
-                height: 30px;
-                color: red;
-            }
-        }
-    }
-    .foot{
-       width: 100%;
-        height: 50px;
-        background: #fff;
-        line-height: 50px;
-        display: flex;
-        justify-content: space-around;
-        position: fixed;
-        bottom: 0;
-    }
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+html {
+  font-size: calc(100 / 750 * 100vw);
+}
+#app {
+  width: 100%;
+  height: 100%;
 }
 
+.subject {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  .subject-box {
+    width: 100%;
+    flex: 1;
+    overflow: auto;
+  }
+  .box {
+    width: 100%;
+
+    .red {
+      width: 100%;
+      height: 4rem;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    .bottom {
+      width: 100%;
+      height: 2rem;
+      text-align: center;
+      line-height: 0.6rem;
+      h3 {
+        width: 100%;
+        margin-top: 0.2rem;
+        font-weight: normal;
+      }
+      p {
+        width: 100%;
+      }
+      p:nth-child(2) {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      p:nth-child(3) {
+        width: 100%;
+        color: red;
+      }
+    }
+  }
+}
 </style>
